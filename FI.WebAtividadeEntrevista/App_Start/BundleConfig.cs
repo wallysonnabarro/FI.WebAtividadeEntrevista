@@ -17,6 +17,16 @@ namespace FI.WebAtividadeEntrevista
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            //Mask
+
+            bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
+            "~/Scripts/jquery.inputmask/inputmask.js",
+            "~/Scripts/jquery.inputmask/jquery.inputmask.js",
+                        "~/Scripts/jquery.inputmask/inputmask.extensions.js",
+                        "~/Scripts/jquery.inputmask/inputmask.date.extensions.js",
+                        "~/Scripts/jquery.inputmask/inputmask.regex.extensions.js",
+                        "~/Scripts/jquery.inputmask/inputmask.numeric.extensions.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -45,15 +55,6 @@ namespace FI.WebAtividadeEntrevista
             bundles.Add(new StyleBundle("~/Content/jtable").Include(
                       "~/Scripts/jtable/themes/metro/darkgray/jtable.css"));
 
-            //Mask
-
-            bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
-            "~/Scripts/jquery.inputmask/inputmask.js",
-            "~/Scripts/jquery.inputmask/jquery.inputmask.js",
-                        "~/Scripts/jquery.inputmask/inputmask.extensions.js",
-                        "~/Scripts/jquery.inputmask/inputmask.date.extensions.js",
-                        "~/Scripts/jquery.inputmask/inputmask.regex.extensions.js",
-                        "~/Scripts/jquery.inputmask/inputmask.numeric.extensions.js"));
         }
     }
 }
