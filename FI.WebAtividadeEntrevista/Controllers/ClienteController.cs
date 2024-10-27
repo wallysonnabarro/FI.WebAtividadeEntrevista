@@ -26,7 +26,7 @@ namespace WebAtividadeEntrevista.Controllers
         public JsonResult Incluir(ClienteModel model)
         {
             BoCliente bo = new BoCliente();
-            
+
             if (!this.ModelState.IsValid)
             {
                 List<string> erros = (from item in ModelState.Values
@@ -38,10 +38,17 @@ namespace WebAtividadeEntrevista.Controllers
             }
             else
             {
-                
+                //Verificar se existe CPF
+                if (bo.VerificarExistencia(model.CPF))
+                {
+                    Response.StatusCode = 400;
+                    return Json(string.Join(Environment.NewLine, "CPF já existente no banco de dados, não é permitida a existência de um CPF duplicado."));
+                }
+
                 model.Id = bo.Incluir(new Cliente()
-                {                    
+                {
                     CEP = model.CEP,
+                    CPF = model.CPF,
                     Cidade = model.Cidade,
                     Email = model.Email,
                     Estado = model.Estado,
@@ -52,7 +59,7 @@ namespace WebAtividadeEntrevista.Controllers
                     Telefone = model.Telefone
                 });
 
-           
+
                 return Json("Cadastro efetuado com sucesso");
             }
         }
@@ -61,7 +68,7 @@ namespace WebAtividadeEntrevista.Controllers
         public JsonResult Alterar(ClienteModel model)
         {
             BoCliente bo = new BoCliente();
-       
+
             if (!this.ModelState.IsValid)
             {
                 List<string> erros = (from item in ModelState.Values
@@ -86,7 +93,7 @@ namespace WebAtividadeEntrevista.Controllers
                     Sobrenome = model.Sobrenome,
                     Telefone = model.Telefone
                 });
-                               
+
                 return Json("Cadastro alterado com sucesso");
             }
         }
@@ -114,7 +121,7 @@ namespace WebAtividadeEntrevista.Controllers
                     Telefone = cliente.Telefone
                 };
 
-            
+
             }
 
             return View(model);
