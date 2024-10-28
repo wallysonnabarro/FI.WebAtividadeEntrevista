@@ -1,5 +1,4 @@
-﻿
-<form id="formCadastro" method="post">
+﻿<form id="formCadastro" method="post">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -79,7 +78,15 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-6">
+            <div class="pull-left">
+                <button type="button" class="btn btn-sm btn-primary" id="openBeneficiariosModal" data-toggle="modal" data-target="#beneficiariosModal">
+                    Beneficiários
+                </button>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
             <div class="pull-right">
                 <button type="submit" class="btn btn-sm btn-success">Salvar</button>
                 @Html.ActionLink("Voltar", "Index", "Cliente", new { }, new { @class = "btn btn-sm btn-danger" })
@@ -87,5 +94,20 @@
         </div>
     </div>
 
-
 </form>
+
+<div class="modal fade" id="beneficiariosModal" tabindex="-1" role="dialog" aria-labelledby="beneficiariosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="beneficiariosModalLabel">Beneficiários</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("~/Views/Beneficiario/Index.cshtml")
+            </div>
+        </div>
+    </div>
+</div>

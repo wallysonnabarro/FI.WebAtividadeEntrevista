@@ -1,24 +1,5 @@
-﻿
-$(document).ready(function () {
-    $("#CPF").inputmask("mask", { "mask": "999.999.999-99" }, { reverse: true });
-    $("#CPFBENEFICIARIO").inputmask("mask", { "mask": "999.999.999-99" }, { reverse: true });
-    $("#CEP").inputmask("mask", { "mask": "99999-999" });
-    $("#Telefone").inputmask("mask", { "mask": "(99) 9999-99999" });
-
-    if (obj) {
-        $('#formCadastro #Nome').val(obj.Nome);
-        $('#formCadastro #CEP').val(obj.CEP);
-        $('#formCadastro #CPF').val(obj.CPF);
-        $('#formCadastro #Email').val(obj.Email);
-        $('#formCadastro #Sobrenome').val(obj.Sobrenome);
-        $('#formCadastro #Nacionalidade').val(obj.Nacionalidade);
-        $('#formCadastro #Estado').val(obj.Estado);
-        $('#formCadastro #Cidade').val(obj.Cidade);
-        $('#formCadastro #Logradouro').val(obj.Logradouro);
-        $('#formCadastro #Telefone').val(obj.Telefone);
-    }
-
-    $('#formCadastro').submit(function (e) {
+﻿$(document).ready(function () {
+    $('#formBeneficiarioCad').submit(function (e) {
         e.preventDefault();
 
         if (!ValidarCPF($(this).find("#CPF").val())) {
@@ -30,34 +11,27 @@ $(document).ready(function () {
             url: urlPost,
             method: "POST",
             data: {
-                "NOME": $(this).find("#Nome").val(),
-                "CEP": $(this).find("#CEP").val(),
+                "Nome": $(this).find("#Nome").val(),
                 "CPF": $(this).find("#CPF").val(),
-                "Email": $(this).find("#Email").val(),
-                "Sobrenome": $(this).find("#Sobrenome").val(),
-                "Nacionalidade": $(this).find("#Nacionalidade").val(),
-                "Estado": $(this).find("#Estado").val(),
-                "Cidade": $(this).find("#Cidade").val(),
-                "Logradouro": $(this).find("#Logradouro").val(),
-                "Telefone": $(this).find("#Telefone").val()
+                "IdCliente": idCliente,
             },
             error:
-            function (r) {
-                if (r.status == 400)
-                    ModalDialog("Ocorreu um erro", r.responseJSON);
-                else if (r.status == 500)
-                    ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
-            },
+                function (r) {
+                    if (r.status == 400)
+                        ModalDialog("Ocorreu um erro", r.responseJSON);
+                    else if (r.status == 500)
+                        ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
+                },
             success:
-            function (r) {
-                ModalDialog("Sucesso!", r)
-                $("#formCadastro")[0].reset();                                
-                window.location.href = urlRetorno;
-            }
+                function (r) {
+                    ModalDialog("Sucesso!", r)
+                    $("#formCadastro")[0].reset();
+                }
         });
     })
-    
+
 })
+
 
 function ModalDialog(titulo, texto) {
     var random = Math.random().toString().replace('.', '');
@@ -82,7 +56,6 @@ function ModalDialog(titulo, texto) {
     $('body').append(texto);
     $('#' + random).modal('show');
 }
-
 
 function ValidarCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, '');
