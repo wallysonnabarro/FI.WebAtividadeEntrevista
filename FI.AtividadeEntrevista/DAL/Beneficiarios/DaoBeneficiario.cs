@@ -91,5 +91,18 @@ namespace FI.AtividadeEntrevista.DAL.Beneficiarios
             return ds.Tables[0].Rows.Count > 0;
         }
 
+        /// <summary>
+        /// Excluir beneficiário
+        /// </summary>
+        /// <param name="beneficiario">Objeto de beneficiario</param>
+        internal void Excluir(long Id)
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+
+            parametros.Add(new System.Data.SqlClient.SqlParameter("ID", Id));
+
+            base.Executar("FI_SP_DelBeneficiario", parametros);
+        }
+
     }
 }

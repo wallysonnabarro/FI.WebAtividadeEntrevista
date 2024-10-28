@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using WebAtividadeEntrevista.Models;
 
 namespace FI.WebAtividadeEntrevista.Controllers
 {
@@ -69,6 +70,16 @@ namespace FI.WebAtividadeEntrevista.Controllers
 
                 return Json("Cadastro efetuado com sucesso");
             }
+        }
+
+
+        [HttpPost]
+        public ActionResult Excluir(long id)
+        {
+            BoBeneficiario bo = new BoBeneficiario();
+            bo.Excluir(id);
+
+            return Json("Excluído efetuado com sucesso");
         }
     }
 }

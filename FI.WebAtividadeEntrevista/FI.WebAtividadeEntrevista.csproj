@@ -182,6 +182,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Beneficiarios\FI.ExcluirBeneficiario.js" />
     <Content Include="Scripts\Beneficiarios\FI.Beneficiario.js" />
     <Content Include="Scripts\Beneficiarios\FI.ListBeneficiarios.js" />
     <Content Include="Scripts\bootstrap.js" />

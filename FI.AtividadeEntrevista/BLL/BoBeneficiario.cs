@@ -33,5 +33,17 @@ namespace FI.AtividadeEntrevista.BLL
             DAL.Beneficiarios.DaoBeneficiario cli = new DAL.Beneficiarios.DaoBeneficiario();
             return cli.VerificarExistencia(CPF);
         }
+
+        /// <summary>
+        /// Excluir o Beneficiario pelo id
+        /// </summary>
+        /// <param name="id">id do Beneficiario</param>
+        /// <returns></returns>
+        public void Excluir(long id)
+        {
+            DAL.Beneficiarios.DaoBeneficiario cli = new DAL.Beneficiarios.DaoBeneficiario();
+            cli.Excluir(id);
+        }
+
     }
 }

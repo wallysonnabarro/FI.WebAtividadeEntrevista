@@ -44,7 +44,10 @@ namespace FI.WebAtividadeEntrevista
                       "~/Scripts/Beneficiarios/FI.ListBeneficiarios.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Beneficiario").Include(
-                      "~/Scripts/Beneficiarios/FI.Beneficiario.js")); 
+                      "~/Scripts/Beneficiarios/FI.Beneficiario.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ExcluirBeneficiario").Include(
+                      "~/Scripts/Beneficiarios/FI.ExcluirBeneficiario.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
