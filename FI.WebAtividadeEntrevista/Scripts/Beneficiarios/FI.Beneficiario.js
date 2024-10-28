@@ -2,17 +2,17 @@
     $('#formBeneficiarioCad').submit(function (e) {
         e.preventDefault();
 
-        if (!ValidarCPF($(this).find("#CPF").val())) {
+        if (!ValidarCPF($(this).find("#CPFBENEFICIARIO").val())) {
             ModalDialog("Ocorreu um erro", "CPF inválido!.");
             return;
         }
 
         $.ajax({
-            url: urlPost,
+            url: urlBeneficiario,
             method: "POST",
             data: {
-                "Nome": $(this).find("#Nome").val(),
-                "CPF": $(this).find("#CPF").val(),
+                "Nome": $(this).find("#NomeBENEFICIARIO").val(),
+                "CPF": $(this).find("#CPFBENEFICIARIO").val(),
                 "IdCliente": idCliente,
             },
             error:
@@ -25,7 +25,7 @@
             success:
                 function (r) {
                     ModalDialog("Sucesso!", r)
-                    $("#formCadastro")[0].reset();
+                    $("#formBeneficiarioCad")[0].reset();
                 }
         });
     })

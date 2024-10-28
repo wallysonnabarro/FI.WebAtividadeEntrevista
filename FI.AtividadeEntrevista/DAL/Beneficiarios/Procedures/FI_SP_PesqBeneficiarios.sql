@@ -25,11 +25,11 @@ BEGIN
 	'SELECT ID, NOME, CPF, IDCLIENTE FROM
 		(SELECT ROW_NUMBER() OVER (ORDER BY ' + @ORDER + ') AS Row, ID, NOME, CPF, IDCLIENTE FROM BENEFICIARIOS WITH(NOLOCK))
 		AS BeneficiariosWithRowNumbers
-	WHERE Row > @iniciarEm AND Row <= (@iniciarEm+@quantidade) AND Row = @idCliente ORDER BY';
+	WHERE Row > @iniciarEm AND Row <= (@iniciarEm+@quantidade) AND IDCLIENTE = @idCliente ORDER BY';
 	
 	SET @SCRIPT = @SCRIPT + @ORDER;
 			
-	EXECUTE SP_EXECUTESQL @SCRIPT, @CAMPOS, @iniciarEm, @quantidade,@idCliente;
+	EXECUTE SP_EXECUTESQL @SCRIPT, @CAMPOS, @iniciarEm, @quantidade, @idCliente;
 
 	SELECT COUNT(1) FROM BENEFICIARIOS WITH(NOLOCK)
 END
