@@ -92,7 +92,7 @@ namespace WebAtividadeEntrevista.Controllers
                     Nacionalidade = model.Nacionalidade,
                     Nome = model.Nome,
                     Sobrenome = model.Sobrenome,
-                    Telefone = model.Telefone
+                    Telefone = model.Telefone,
                 });
 
                 return Json("Cadastro alterado com sucesso");
@@ -108,6 +108,9 @@ namespace WebAtividadeEntrevista.Controllers
 
             if (cliente != null)
             {
+                int qtd = 0;
+                List<Beneficiario> beneficiarios = new BoBeneficiario().Pesquisa(id, 0, 5, "Nome", true, out qtd);
+
                 model = new ClienteModel()
                 {
                     Id = cliente.Id,
@@ -120,7 +123,8 @@ namespace WebAtividadeEntrevista.Controllers
                     Nacionalidade = cliente.Nacionalidade,
                     Nome = cliente.Nome,
                     Sobrenome = cliente.Sobrenome,
-                    Telefone = cliente.Telefone
+                    Telefone = cliente.Telefone,
+                    Beneficiarios = beneficiarios
                 };
             }
 
