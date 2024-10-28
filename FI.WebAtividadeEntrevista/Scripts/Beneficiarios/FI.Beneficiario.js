@@ -24,8 +24,26 @@
                 },
             success:
                 function (r) {
-                    ModalDialog("Sucesso!", r)
+                    ModalDialog("Sucesso!", r.Menssagem);
+
+                    const nome = $("#NomeBENEFICIARIO").val();
+                    const cpf = $("#CPFBENEFICIARIO").val();
+                    const idBeneficiario = r.Id;
+
+                    $("#tabelaBeneficiariosBody").append(`
+                    <tr>
+                        <td>${cpf}</td>
+                        <td>${nome}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger excluir-btn" data-id="${idBeneficiario}">
+                                Excluir
+                            </button>
+                        </td>
+                    </tr>
+                    `);
+
                     $("#formBeneficiarioCad")[0].reset();
+                    location.reload();
                 }
         });
     })

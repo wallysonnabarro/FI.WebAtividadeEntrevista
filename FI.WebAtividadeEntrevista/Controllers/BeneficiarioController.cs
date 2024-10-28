@@ -68,7 +68,7 @@ namespace FI.WebAtividadeEntrevista.Controllers
                     IDCLIENTE = model.IdCliente,
                 });
 
-                return Json("Cadastro efetuado com sucesso");
+                return Json(new { Menssagem = "Cadastro efetuado com sucesso", Id = model.Id });
             }
         }
 
