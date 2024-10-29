@@ -1,6 +1,7 @@
 ﻿using FI.AtividadeEntrevista.DML;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace FI.AtividadeEntrevista.DAL.Beneficiarios
 {
@@ -8,7 +9,24 @@ namespace FI.AtividadeEntrevista.DAL.Beneficiarios
     /// Classe de acesso a dados de Beneficiario
     /// </summary>
     internal class DaoBeneficiario : AcessoDados
-    {  
+    {
+        /// <summary>
+        /// Alterar beneficiario
+        /// </summary>
+        /// <param name="beneficiario">Objeto de beneficiario</param>
+        internal void Alterar(DML.Beneficiario beneficiario)
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+
+            parametros.Add(new System.Data.SqlClient.SqlParameter("NOME", beneficiario.Nome));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", beneficiario.CPF));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("IDCLIENTE", beneficiario.IDCLIENTE));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("ID", beneficiario.Id));
+
+            base.Executar("FI_SP_AltBeneficiario", parametros);
+            
+        }
+
         /// <summary>
         /// Inclui um novo beneficiario
         /// </summary>
@@ -90,6 +108,23 @@ namespace FI.AtividadeEntrevista.DAL.Beneficiarios
 
             return ds.Tables[0].Rows.Count > 0;
         }
+
+        /// <summary>
+        /// Inclui um novo beneficiario
+        /// </summary>
+        /// <param name="beneficiario">Objeto de beneficiario</param>
+        internal DML.Beneficiario Consultar(long Id)
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+
+            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", Id));
+
+            DataSet ds = base.Consultar("FI_SP_ConsBeneficiario", parametros);
+            List<DML.Beneficiario> cli = Converter(ds);
+
+            return cli.FirstOrDefault();
+        }
+
 
         /// <summary>
         /// Excluir beneficiário

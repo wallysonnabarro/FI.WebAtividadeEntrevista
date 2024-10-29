@@ -4,6 +4,7 @@ using FI.WebAtividadeEntrevista.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 using WebAtividadeEntrevista.Models;
 
@@ -54,22 +55,50 @@ namespace FI.WebAtividadeEntrevista.Controllers
             }
             else
             {
-                //Verificar se existe CPF
-                if (bo.VerificarExistencia(model.CPF))
+                if (model.Id > 0)
                 {
-                    Response.StatusCode = 400;
-                    return Json(string.Join(Environment.NewLine, "CPF já existente no banco de dados, não é permitida a existência de um CPF duplicado."));
-                }
+                    bo.Alterar(new Beneficiario());
 
-                model.Id = bo.Incluir(new Beneficiario()
+                    return Json(new { Menssagem = "Alteração efetuada com sucesso", Id = model.Id });
+                }
+                else
                 {
-                    CPF = model.CPF,
-                    Nome = model.Nome,
-                    IDCLIENTE = model.IdCliente,
-                });
+                    if (bo.VerificarExistencia(model.CPF))
+                    {
+                        Response.StatusCode = 400;
+                        return Json(string.Join(Environment.NewLine, "CPF já existente no banco de dados, não é permitida a existência de um CPF duplicado."));
+                    }
+
+                    model.Id = bo.Incluir(new Beneficiario()
+                    {
+                        CPF = model.CPF,
+                        Nome = model.Nome,
+                        IDCLIENTE = model.IdCliente,
+                    });
+                }
 
                 return Json(new { Menssagem = "Cadastro efetuado com sucesso", Id = model.Id });
             }
+        }
+
+        [HttpGet]
+        public ActionResult Alterar(long id)
+        {
+            BoBeneficiario bo = new BoBeneficiario();
+            Beneficiario bene = bo.Consultar(id);
+
+            if (bene != null)
+            {
+                ViewBag.BeneficiarioModel = new BeneficiarioModel()
+                {
+                    Id = bene.Id,
+                    IdCliente = bene.IDCLIENTE,
+                    CPF = bene.CPF,
+                    Nome = bene.Nome,
+                };
+            }
+
+            return PartialView("~/Views/Beneficiario/FormsBeneficiario.cshtml");
         }
 
 

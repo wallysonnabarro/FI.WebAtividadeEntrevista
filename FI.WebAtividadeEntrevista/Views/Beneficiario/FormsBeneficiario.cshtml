@@ -1,21 +1,57 @@
-﻿<form id="formBeneficiarioCad" method="post">
+﻿@{
+    var beneficiarioModel = ViewBag.BeneficiarioModel;
+}
+
+<form id="formBeneficiarioCad" method="post">
 
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 <label for="CPF">CPF:</label>
-                <input required="required" type="text" class="form-control" id="CPFBENEFICIARIO" name="CPFBENEFICIARIO" placeholder="Ex.: 010.011.111-00" maxlength="14">
+                <input required="required" type="text" class="form-control" id="CPFBENEFICIARIO" name="CPFBENEFICIARIO"
+                       placeholder="Ex.: 010.011.111-00" maxlength="14" value="@((beneficiarioModel != null) ? beneficiarioModel.CPF : "")" />
             </div>
         </div>
         <div class="col-md-5">
             <div class="form-group">
                 <label for="NomeBENEFICIARIO">Nome:</label>
-                <input required="required" type="text" class="form-control" id="NomeBENEFICIARIO" name="NomeBENEFICIARIO" placeholder="Ex.: Maria" maxlength="50">
+                <input required="required" type="text" class="form-control" id="NomeBENEFICIARIO" name="NomeBENEFICIARIO"
+                       placeholder="Ex.: Maria" maxlength="50" value="@((beneficiarioModel != null) ? beneficiarioModel.Nome : "")" />
             </div>
         </div>
         <div class="col-md-3">
-                <button type="submit" class="btn btn-sm btn-success" style="margin-top: 25px;">Incluir</button>
+            <button type="submit" class="btn btn-sm btn-success" style="margin-top: 25px;">Incluir</button>
         </div>
     </div>
-    
+
 </form>
+
+<table class="table" id="tabelaBeneficiariosBody">
+    <thead>
+        <tr>
+            <th scope="col">CPF</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model.Beneficiarios)
+            {
+                <tr>
+                    <td>@item.CPF</td>
+                    <td>@item.Nome</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-primary alterar-btn" data-id="@item.Id" data-cpf="@item.CPF" data-nome="@item.Nome">
+                            Alterar
+                        </button>
+                        <button type="button" id="ExcluirBeneficiario" class="btn btn-sm btn-danger excluir-btn" data-id="@item.Id">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

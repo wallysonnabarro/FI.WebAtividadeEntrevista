@@ -182,6 +182,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Beneficiarios\FI.AlterarBeneficiario.js" />
     <Content Include="Scripts\Beneficiarios\FI.ExcluirBeneficiario.js" />
     <Content Include="Scripts\Beneficiarios\FI.Beneficiario.js" />
     <Content Include="Scripts\Beneficiarios\FI.ListBeneficiarios.js" />
@@ -319,6 +320,7 @@
     <Content Include="Scripts\jtable\themes\metro\red\jtable.min.css" />
     <Content Include="Scripts\jtable\themes\metro\red\loading.gif" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\FI.Utils.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -358,7 +360,6 @@
     <Content Include="Scripts\jtable\themes\metro\purple\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\red\jtable.less" />
     <Content Include="Views\Beneficiario\FormsBeneficiario.cshtml" />
-    <Content Include="Views\Beneficiario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\themes\base\minified\images\" />
