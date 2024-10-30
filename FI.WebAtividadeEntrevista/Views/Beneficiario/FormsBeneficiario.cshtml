@@ -1,5 +1,6 @@
 ﻿@{
     var beneficiarioModel = ViewBag.BeneficiarioModel;
+    var listaBeneficiarios = ViewBag.ListaBeneficiarios;
 }
 
 <form id="formBeneficiarioCad" method="post">
@@ -35,9 +36,9 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model != null)
+        @if (@listaBeneficiarios != null)
         {
-            foreach (var item in Model.Beneficiarios)
+            foreach (var item in listaBeneficiarios)
             {
                 <tr>
                     <td>@item.CPF</td>

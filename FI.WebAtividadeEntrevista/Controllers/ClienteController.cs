@@ -59,7 +59,6 @@ namespace WebAtividadeEntrevista.Controllers
                     Telefone = model.Telefone
                 });
 
-
                 return Json(new { Message = "Cadastro efetuado com sucesso", id = model.Id });
             }
         }
@@ -123,9 +122,10 @@ namespace WebAtividadeEntrevista.Controllers
                     Nacionalidade = cliente.Nacionalidade,
                     Nome = cliente.Nome,
                     Sobrenome = cliente.Sobrenome,
-                    Telefone = cliente.Telefone,
-                    Beneficiarios = beneficiarios
+                    Telefone = cliente.Telefone
                 };
+
+                ViewBag.ListaBeneficiarios = beneficiarios;
             }
 
             return View(model);

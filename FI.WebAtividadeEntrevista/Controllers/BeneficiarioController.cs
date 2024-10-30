@@ -57,7 +57,13 @@ namespace FI.WebAtividadeEntrevista.Controllers
             {
                 if (model.Id > 0)
                 {
-                    bo.Alterar(new Beneficiario());
+                    bo.Alterar(new Beneficiario()
+                    {
+                        Id = model.Id,
+                        CPF = model.CPF,
+                        Nome = model.Nome,
+                        IDCLIENTE = model.IdCliente,
+                    });
 
                     return Json(new { Menssagem = "Alteração efetuada com sucesso", Id = model.Id });
                 }

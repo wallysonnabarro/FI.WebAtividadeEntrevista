@@ -4,9 +4,16 @@
 }
 @section scripts{
     <script>
-        var urlPost = '@Url.Action("Incluir", "Cliente", new { area = "" })';
+        var urlBeneficiario = '@Url.Action("Beneficiario", "Beneficiario", new { area = "" })';
+        var urlAlteracao = '@Url.Action("Alterar", "Beneficiario", new { area = "" })';
+        var urlExcluir = '@Url.Action("Excluir", "Beneficiario", new { area = "" })';
+        var urlClientePost = '@Url.Action("Incluir", "Cliente", new { area = "" })';
     </script>
     @Scripts.Render("~/bundles/clientes")
+    @Scripts.Render("~/bundles/ExcluirBeneficiario");
+    @Scripts.Render("~/bundles/AlterarBeneficiario");
+    @Scripts.Render("~/bundles/Beneficiario");
+    @Scripts.Render("~/bundles/Utils");
 }
 <h2>@Html.Raw(ViewBag.Title)</h2>
 @Html.Partial("Forms")

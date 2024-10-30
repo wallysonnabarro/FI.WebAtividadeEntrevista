@@ -10,9 +10,10 @@
         }
 
         if (idClienteSession == null && (idCliente == 0 || idCliente == null)) {
-            ModalDialog("Ocorreu um erro", "CPF inválido!.");
+            ModalDialog("Ocorreu um erro", "É necessário registrar o Cliente.");
             return
         }
+
         $.ajax({
             url: urlBeneficiario,
             method: "POST",

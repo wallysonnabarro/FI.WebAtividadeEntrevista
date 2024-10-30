@@ -14,10 +14,10 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url: urlPost,
+            url: urlClientePost,
             method: "POST",
             data: {
-                "NOME": $(this).find("#Nome").val(),
+                "Nome": $(this).find("#Nome").val(),
                 "CEP": $(this).find("#CEP").val(),
                 "CPF": $(this).find("#CPF").val(),
                 "Email": $(this).find("#Email").val(),
@@ -37,7 +37,7 @@ $(document).ready(function () {
                 },
             success:
                 function (r) {
-                    ModalDialog("Sucesso!", r)
+                    ModalDialog("Sucesso!", r.Message)
 
                     sessionStorage.setItem('idCliente', r.id);
                 }
